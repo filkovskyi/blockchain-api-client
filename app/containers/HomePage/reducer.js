@@ -1,18 +1,48 @@
-import { CHANGE_USERNAME } from './constants';
+import {
+  LOAD_BLOCK,
+  LOAD_BLOCK_SUCCESS,
+  LOAD_BLOCK_ERROR,
+} from './constants';
 
-// The initial state of the App
-const initialState = {
-  username: '',
+export const initialState = {
+  loading: false,
+  error: false,
+  blockChain: {
+    block: false,
+  },
 };
 
-function homeReducer(state = initialState, action) {
+function appReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return { ...state, username: action.name.replace(/@/gi, '') };
+    case LOAD_BLOCK: {
+      const newState = {
+        ...state,
+        loading: true,
+        error: false,
+        blockChain: {
+          block: false,
+        },
+      };
+
+      return newState;
+    }
+    case LOAD_BLOCK_SUCCESS: {
+      const newState = {
+        ...state,
+        loading: false,
+        blockChain: {
+          block: action.block,
+        },
+      };
+      return newState;
+    }
+
+    case LOAD_BLOCK_ERROR: {
+      return { ...state, error: action.error, loading: false };
+    }
     default:
       return state;
   }
 }
 
-export default homeReducer;
+export default appReducer;
