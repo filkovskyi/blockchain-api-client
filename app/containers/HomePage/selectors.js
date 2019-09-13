@@ -26,7 +26,7 @@ const makeSelectLocation = () =>
 const makeSelectBlock = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.block,
+    globalState => globalState.blockChain.block,
   );
 
 export {

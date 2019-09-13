@@ -21,6 +21,7 @@ function appReducer(state = initialState, action) {
         error: false,
         blockChain: {
           block: false,
+          defaultHash: '0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103'
         },
       };
 

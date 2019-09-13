@@ -2,31 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const List = ({ component, items }) => {
-  const ComponentToRender = component;
-  let content = (<div></div>);
+const List = ({ items }) => {
+  let content = <div />;
 
   // If we have items, render them
   if (items) {
-    content = items.map((item) => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
+    console.log(items);
+    content = items.map(item => (
+      <div key={`item-${item.tx_index}`}>
+        <div>Transaction size: {item.size}</div>
+        <div>Transaction time: {item.time}</div>
+        <div>Transaction weight: {item.weight}</div>
+        <hr />
+      </div>
     ));
-  } else {
-    // Otherwise render a single component
-    content = (<ComponentToRender />);
   }
 
   return (
     <div className="list-wrapper">
-      <ul>
-        {content}
-      </ul>
+      <ul>{content}</ul>
     </div>
   );
 };
 
 List.propTypes = {
-  component: PropTypes.elementType.isRequired,
   items: PropTypes.array,
 };
 
