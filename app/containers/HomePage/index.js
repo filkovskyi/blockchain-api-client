@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { loadBlock } from './actions';
+import { loadBlock, loadBlockHash } from './actions';
 import { makeSelectBlock } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -11,6 +11,7 @@ import HomePage from './HomePage';
 
 const mapDispatchToProps = dispatch => ({
   onFetchBlock: () => dispatch(loadBlock()),
+  onFetchBlockHash: (hash) => dispatch(loadBlockHash(hash)),
 });
 
 const mapStateToProps = createStructuredSelector({

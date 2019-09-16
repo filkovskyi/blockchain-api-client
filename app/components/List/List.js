@@ -7,7 +7,6 @@ const List = ({ items }) => {
 
   // If we have items, render them
   if (items) {
-    console.log(items);
     content = items.map(item => (
       <div key={`item-${item.tx_index}`}>
         <div>Transaction size: {item.size}</div>
