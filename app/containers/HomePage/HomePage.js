@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import ReposList from 'components/ReposList';
+import BlockInfo from 'components/BlockInfo';
 import './style.scss';
 
 export default class HomePage extends Component {
@@ -13,6 +14,7 @@ export default class HomePage extends Component {
   render() {
     const repoListProps = {
       block: this.props.block,
+      onFetchBlockHash: this.props.onFetchBlockHash,
     };
 
     return (
@@ -25,28 +27,7 @@ export default class HomePage extends Component {
           />
         </Helmet>
         <div className="home-page">
-          <div>
-            <div>block_index: {repoListProps.block.block_index}</div>
-            <div>height: {repoListProps.block.height}</div>
-            <div>size: {repoListProps.block.size}</div>
-            <div>time: {repoListProps.block.time}</div>
-            <hr />
-            <button
-              onClick={() => {
-                this.props.onFetchBlockHash(this.props.block.next_block[0]);
-              }}
-            >
-              Next block
-            </button>
-
-            <button
-              onClick={() => {
-                this.props.onFetchBlockHash(this.props.block.prev_block);
-              }}
-            >
-              Prev block
-            </button>
-          </div>
+          <BlockInfo {...repoListProps} />
           <ReposList {...repoListProps} />
         </div>
       </article>
